@@ -53,9 +53,22 @@ async function updateQuestion(req, res) {
   }
 }
 
+async function index(req, res) {
+  try {
+    console.log("USER ID IS", req.user.id);
+    const surveys = await Survey.findAll(
+      { where: { id: req.user.id }}
+    )
+    res.status(200).json(surveys)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
 module.exports = {
   create,
   update,
   createQuestion,
   updateQuestion,
+  index,
 }

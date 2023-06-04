@@ -10,6 +10,8 @@ const { decodeUserFromToken, checkAuth } = middleware
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 
+router.get('/', checkAuth, surveysCtrl.index)
+
 router.post('/', checkAuth, surveysCtrl.create)
 router.post('/:surveyId/questions', surveysCtrl.createQuestion)
 
