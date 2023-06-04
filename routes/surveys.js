@@ -18,4 +18,6 @@ router.post('/:surveyId/questions', surveysCtrl.createQuestion)
 router.put('/:surveyId', checkAuth, surveysCtrl.update)
 router.put('/:surveyId/questions/:questionId', checkAuth, surveysCtrl.updateQuestion)
 
+router.delete('/:surveyId', checkAuth, surveysCtrl.deleteSurvey)
+
 module.exports = router
