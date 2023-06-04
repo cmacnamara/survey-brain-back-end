@@ -35,8 +35,27 @@ async function createQuestion(req, res) {
   }
 }
 
+async function updateQuestion(req, res) {
+  try {
+    const question = await Question.findByPk(req.params.questionId)
+    
+    if(question) {
+      question.prompt = req.body.prompt
+      question.type = req.body.type
+      question.answerChoices = req.body.answerChoices
+      question.required = req.body.required
+      await question.save()
+    }
+
+    res.status(200).json(question)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
 module.exports = {
   create,
   update,
-  createQuestion
+  createQuestion,
+  updateQuestion,
 }
