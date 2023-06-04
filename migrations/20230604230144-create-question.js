@@ -22,7 +22,7 @@ module.exports = {
         references: {
           model: 'Surveys',
           key: 'id',
-        }
+        },
       },
       answerChoices: {
         type: Sequelize.ARRAY(Sequelize.STRING)
