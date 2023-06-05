@@ -2,6 +2,7 @@ const { Survey, Question, Response } = require('../models')
 
 async function create(req, res) {
   try {
+    req.body.profileId = req.user.id
     const survey = await Survey.create(req.body)
     res.status(200).json(survey)
   } catch (error) {
