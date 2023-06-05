@@ -64,6 +64,19 @@ async function index(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const survey = await Survey.findByPk(
+      req.params.surveyId,
+      { include: [{ model: Question, as: 'surveyQuestions' }]}
+    )
+    res.status(200).json(survey)
+  } catch (error) {
+    console.log('ERROR IS', error);
+    res.status(500).json({ err: error })
+  }
+}
+
 async function deleteSurvey(req, res) {
   try {
     const numRowsRemoved = await Survey.destroy(
@@ -118,4 +131,5 @@ module.exports = {
   deleteQuestion,
   createResponse,
   indexResponses,
+  show,
 }
