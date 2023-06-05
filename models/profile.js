@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'surveysCreated',
         foreignKey: 'profileId'
       })
+      
+      Profile.hasMany(models.Response, {
+        as: 'responsesSubmitted',
+        foreignKey: 'profileId'
+      })
     }
   }
 

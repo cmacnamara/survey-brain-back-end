@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Response.belongsTo(models.Question, { foreignKey: 'questionId'})
+      
+      Response.belongsTo(models.Profile, { foreignKey: 'profileId'})
     }
   }
   Response.init({

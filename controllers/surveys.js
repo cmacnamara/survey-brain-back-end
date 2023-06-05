@@ -72,7 +72,6 @@ async function show(req, res) {
     )
     res.status(200).json(survey)
   } catch (error) {
-    console.log('ERROR IS', error);
     res.status(500).json({ err: error })
   }
 }
