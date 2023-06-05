@@ -58,7 +58,7 @@ async function updateQuestion(req, res) {
 async function index(req, res) {
   try {
     const surveys = await Survey.findAll(
-      { where: { id: req.user.id }}
+      { where: { profileId: req.user.id }}
     )
     res.status(200).json(surveys)
   } catch (error) {
