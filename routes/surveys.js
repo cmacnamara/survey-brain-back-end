@@ -19,5 +19,6 @@ router.put('/:surveyId', checkAuth, surveysCtrl.update)
 router.put('/:surveyId/questions/:questionId', checkAuth, surveysCtrl.updateQuestion)
 
 router.delete('/:surveyId', checkAuth, surveysCtrl.deleteSurvey)
+router.delete('/:surveyId/questions/:questionId', checkAuth, surveysCtrl.deleteQuestion)
 
 module.exports = router

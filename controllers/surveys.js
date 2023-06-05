@@ -75,6 +75,17 @@ async function deleteSurvey(req, res) {
   }
 }
 
+async function deleteQuestion(req, res) {
+  try {
+    const numRowsRemoved = await Question.destroy(
+      { where: { id: req.params.questionId }}
+    )
+    res.status(200).json(numRowsRemoved)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
 module.exports = {
   create,
   update,
@@ -82,4 +93,5 @@ module.exports = {
   updateQuestion,
   index,
   deleteSurvey,
+  deleteQuestion,
 }
