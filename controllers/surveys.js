@@ -68,7 +68,7 @@ async function show(req, res) {
   try {
     const survey = await Survey.findByPk(
       req.params.surveyId,
-      { include: [{ model: Question, as: 'surveyQuestions' }]}
+      { include: [{ all: true, nested: true }]}
     )
     res.status(200).json(survey)
   } catch (error) {
