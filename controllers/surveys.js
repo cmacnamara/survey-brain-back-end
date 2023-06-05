@@ -88,6 +88,7 @@ async function deleteQuestion(req, res) {
 
 async function createResponse(req, res) {
   try {
+    req.body.profileId = req.user.profile.id
     req.body.questionId = parseInt(req.params.questionId)
     const response = await Response.create(req.body)
     res.status(200).json(response)
