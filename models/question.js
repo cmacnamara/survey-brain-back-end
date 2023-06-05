@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     answerChoices: DataTypes.ARRAY(DataTypes.STRING),
-    required: DataTypes.BOOLEAN
+    required: DataTypes.BOOLEAN,
+    edited: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Question',
