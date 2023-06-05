@@ -88,4 +88,15 @@ function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-module.exports = { signup, login, changePassword }
+async function deleteAccount(req, res) {
+  try {
+    const rowsRemoved = await User.destroy(
+      { where: { id: req.user.id } }
+    )
+    res.status(200).json(rowsRemoved) // Expected: 1
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
+module.exports = { signup, login, changePassword, deleteAccount }
