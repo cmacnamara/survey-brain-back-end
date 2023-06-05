@@ -1,4 +1,4 @@
-const { Survey, Question } = require('../models')
+const { Survey, Question, Response } = require('../models')
 
 async function create(req, res) {
   try {
@@ -86,6 +86,27 @@ async function deleteQuestion(req, res) {
   }
 }
 
+async function createResponse(req, res) {
+  try {
+    req.body.questionId = parseInt(req.params.questionId)
+    const response = await Response.create(req.body)
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
+async function indexResponses(req, res) {
+  try {
+    const responses = await Response.findAll(
+      { where: { questionId: req.params.questionId }}
+    )
+    res.status(200).json(responses)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
 module.exports = {
   create,
   update,
@@ -94,4 +115,6 @@ module.exports = {
   index,
   deleteSurvey,
   deleteQuestion,
+  createResponse,
+  indexResponses,
 }
